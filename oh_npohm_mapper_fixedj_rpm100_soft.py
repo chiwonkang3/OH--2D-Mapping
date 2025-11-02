@@ -41,8 +41,8 @@ eddy_at_300, p_exp, eddy_floor = 10.0, 0.70, 1.0
 eddy_base_100 = max(eddy_floor, eddy_at_300 * (100.0/300.0)**p_exp)
 eddy_min_100  = 6.0
 eddy_100 = max(eddy_base_100, eddy_min_100)
-lambda_WE = 1.0
-sigma_x   = 0.6e-3
+lambda_WE = 2.0
+sigma_x   = 1.0e-3
 y_pad     = 1.0e-3
 mask_WEy  = (Y >= (y1 - y_pad)) & (Y <= (y2 + y_pad))
 bump_WE   = np.exp(-0.5*((X - cx_we)/sigma_x)**2) * mask_WEy
@@ -70,7 +70,7 @@ def build_species_source_smoothed():
     s = np.zeros((Ny, Nx))
     if j_abs_Am2 == 0.0: return s
     base = (j_abs_Am2/F)/dx
-    k_idx = np.arange(-2, 3); sigma_cells = 1.0
+    k_idx = np.arange(-1, 2); sigma_cells = 1.2
     w = np.exp(-0.5*(k_idx/sigma_cells)**2); w = w/np.sum(w)
     for xf in faces_we + faces_ce:
         i0 = int(round(xf/dx)); i0 = max(0, min(Nx-1, i0))
