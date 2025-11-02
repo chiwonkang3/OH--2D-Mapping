@@ -41,8 +41,8 @@ eddy_at_300, p_exp, eddy_floor = 10.0, 0.70, 1.0
 eddy_base_100 = max(eddy_floor, eddy_at_300 * (100.0/300.0)**p_exp)
 eddy_min_100  = 6.0
 eddy_100 = max(eddy_base_100, eddy_min_100)
-lambda_WE = 1.7
-sigma_x   = 0.9e-3
+lambda_WE = 2.0
+sigma_x   = 1.0e-3
 y_pad     = 1.0e-3
 mask_WEy  = (Y >= (y1 - y_pad)) & (Y <= (y2 + y_pad))
 bump_WE   = np.exp(-0.5*((X - cx_we)/sigma_x)**2) * mask_WEy
